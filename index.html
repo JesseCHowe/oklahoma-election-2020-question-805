@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Oklahoma Election 2020: Criminal Justice Reform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body>
+  <div class="ok_map">
+    <h1>State Question 805</h1>
+    <p>Amend the Oklahoma Constitution to end the use of sentence enhancements for people convicted of nonviolent crimes. </p>
+  <select id="select-container">
+        <option value="all">Select County</option>
+  </select>
+    <div class="toolTip">
+      <span class="precinct-num"></span>
+      <table style="width:100%">
+  <tr class="desc-row">
+    <th></th>
+    <th>Votes</th>
+    <th>Percent</th>
+  </tr>
+  <tr class="against-row">
+    <td>
+      <span class="drk-color clrBlock"></span>
+      <span class="lgt-color clrBlock"></span>
+      Against the proposal
+    </td>
+    <td class="against-vote"></td>
+    <td class="against-percentage"></td>
+  </tr>
+  <tr class="for-row">
+    <td>
+      <span class="drk-color clrBlock"></span>
+      <span class="lgt-color clrBlock"></span>
+      For the proposal</td>
+    <td class="for-vote"></td>
+    <td class="for-percentage"></td>
+  </tr>
+</table>
+    </div>
+    <div class="container">
+      <button class="zoom-btn">Zoom Out</button>
+    <svg class="map_container" viewBox="0 0 960 500" preserveAspectRatio="xMinYMin slice" width="100%" height="100%" style="width: 100%;">
+    </svg>
+  </div>
+  </div>
+</body>
+<!-- partial -->
+  <script src='https://d3js.org/d3.v3.min.js'></script>
+<script src='https://d3js.org/topojson.v1.min.js'></script>
+<script src='https://d3js.org/queue.v1.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
