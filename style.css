@@ -1,23 +1,23 @@
 .ok_map {
-    margin: 0 auto;
+  margin: 0 auto;
   display: block;
-  max-width: 700px;
+  max-width: 1200px;
 }
-#select-container{
+#select-container {
   width: 100%;
   border: 0;
   border-bottom: 1px solid #000;
   border-radius: 0;
   margin-bottom: 1rem;
 }
-table{
-    border-collapse: collapse;
+table {
+  border-collapse: collapse;
   margin-bottom: 1rem;
 }
 td {
   padding: 0.5rem;
 }
-.featurebg{
+.featurebg {
   fill-opacity: 0;
   stroke: #fff;
   stroke-width: 1px;
@@ -28,12 +28,12 @@ td {
 }
 
 .feature {
-  fill: rgba(0,0,0,0);
+  fill: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
 .feature.active {
-/*   fill: orange; */
+  /*   fill: orange; */
 }
 
 .mesh {
@@ -43,29 +43,29 @@ td {
   stroke-linejoin: round;
 }
 
-.map_container{
-/*   border: 1px solid #000; */
+.map_container {
+  /*   border: 1px solid #000; */
 }
 
-.county-boundary{
+.county-boundary {
   fill: none;
-/*   stroke: #000; */
+  /*   stroke: #000; */
   stroke-width: 0px;
 }
 
 .container {
   position: relative;
 }
-.data-desc{
+.data-desc {
   display: block;
   color: #aaa;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
-select{
+select {
   font-size: 1.2rem;
 }
-.zoom-btn{
+.zoom-btn {
   position: absolute;
   right: 5px;
   top: 5px;
@@ -76,25 +76,25 @@ select{
   display: none;
 }
 
-.win{
+.win {
   background: #ddd;
 }
 
-.place-text{
+.place-text {
   text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
 }
-.precinct-num{
+.precinct-num {
   height: 20px;
   width: 100%;
   display: block;
 }
-.county-boundary2{
+.county-boundary2 {
 }
-.county-boundary2:hover{
+.county-boundary2:hover {
   stroke: #000;
   stroke-width: 0.5px;
 }
-th{
+th {
   text-align: right;
   font-weight: 300;
   color: #aaa;
@@ -107,7 +107,7 @@ th{
   text-align: right;
 }
 .desc-row,
-.against-row{
+.against-row {
   border-bottom: 1px solid #ccc;
 }
 
@@ -117,16 +117,16 @@ th{
   height: 12px;
 }
 
-.against-row .drk-color{
+.against-row .drk-color {
   background: #f28124;
 }
-.against-row .lgt-color{
+.against-row .lgt-color {
   background: #f5a461;
 }
 
-.for-row .drk-color{
+.for-row .drk-color {
   background: #367a7f;
 }
-.for-row .lgt-color{
+.for-row .lgt-color {
   background: #75a6a8;
 }
