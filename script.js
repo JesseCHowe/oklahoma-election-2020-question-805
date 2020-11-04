@@ -38,26 +38,25 @@ var g = svg.append("g").style("stroke-width", "1.5px");
 queue()
   .defer(
     d3.json,
-    "https://raw.githubusercontent.com/JesseCHowe/Oklahoma_6_30_Election/master/precincts.json"
+    "https://raw.githubusercontent.com/JesseCHowe/oklahoma-election-2020-question-805/main/data/precincts.json"
   )
   .defer(
     d3.json,
-    "https://raw.githubusercontent.com/JesseCHowe/Oklahoma_6_30_Election/master/counties.json"
+    "https://raw.githubusercontent.com/JesseCHowe/oklahoma-election-2020-question-805/main/data/counties.json"
   )
   .defer(
     d3.csv,
-    "https://raw.githubusercontent.com/JesseCHowe/Oklahoma_6_30_Election/master/results.csv"
+    "https://raw.githubusercontent.com/JesseCHowe/oklahoma-election-2020-question-805/main/data/results.csv"
   )
   .defer(
     d3.json,
-    "https://raw.githubusercontent.com/JesseCHowe/Oklahoma_6_30_Election/master/places.json"
+    "https://raw.githubusercontent.com/JesseCHowe/oklahoma-election-2020-question-805/main/data/places.json"
   )
   .await(loaded);
 
 const countyId = d3.map();
 
 function loaded(error, county, us, results, places) {
-  
   let state_pre_forProp = results.filter(
     (o) => o.cand_name === "FOR THE PROPOSAL - YES"
   );
@@ -101,8 +100,8 @@ function loaded(error, county, us, results, places) {
 
   function mouseOverFunc(d) {
     precinctNum.text("");
-    
-    if(!zoomMode) {
+
+    if (!zoomMode) {
       selectionContainer.selectAll("option").property("selected", function (o) {
         return o.properties.NAME === d.properties.NAME;
       });
@@ -113,24 +112,24 @@ function loaded(error, county, us, results, places) {
             o.county_name ===
             d.properties.NAME.toUpperCase().split(" ").join("")
         );
-      } else if(d.properties.NAME === "Roger Mills") {
+      } else if (d.properties.NAME === "Roger Mills") {
         selCounty = results.filter(
           (o) =>
             o.county_name.split(" ").join("_") ===
             d.properties.NAME.toUpperCase().split(" ").join("_")
         );
-      }else {
+      } else {
         selCounty = results.filter(
           (o) => o.county_name === d.properties.NAME.toUpperCase()
         );
       }
       let filterCounty;
-      if(d.properties.NAME === "Roger Mills") {
+      if (d.properties.NAME === "Roger Mills") {
         filterCounty = d.properties.NAME.toUpperCase().split(" ").join("_");
       } else {
         filterCounty = d.properties.NAME.toUpperCase().split(" ").join("");
       }
-      d3.selectAll('.county-boundary').style('opacity',0.5)
+      d3.selectAll(".county-boundary").style("opacity", 0.5);
       d3.selectAll(`#precincts .${filterCounty}`).style("opacity", 1);
 
       let totalresult = selCounty.reduce(
@@ -164,9 +163,9 @@ function loaded(error, county, us, results, places) {
   }
   function mouseOutFunc(d) {
     if (!zoomMode) {
-d3.select('#select-container').property('value', 'all');
+      d3.select("#select-container").property("value", "all");
 
-            d3.selectAll('.county-boundary').style('opacity',1)
+      d3.selectAll(".county-boundary").style("opacity", 1);
 
       againstVote.text(numberWithCommas(state_againstProp));
       forVote.text(numberWithCommas(state_forProp));
@@ -229,7 +228,7 @@ d3.select('#select-container').property('value', 'all');
       Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
     t = [
       (width - s * (b[1][0] + b[0][0])) / 2,
-      (height - s * (b[1][1] + b[0][1])) / 2
+      (height - s * (b[1][1] + b[0][1])) / 2,
     ];
 
   projection.scale(s).translate(t);
@@ -243,7 +242,7 @@ d3.select('#select-container').property('value', 'all');
     return 0;
   });
   const selectionContainer = d3.select("#select-container");
-  
+
   selectionContainer
     .selectAll("option")
     .data(testSort)
@@ -252,7 +251,7 @@ d3.select('#select-container').property('value', 'all');
     .attr("value", (d) => d.properties.NAME)
     .text((d) => d.properties.NAME);
   selectionContainer.on("change", changed);
-  
+
   g.append("g")
     .attr("id", "precincts")
     .selectAll("path")
@@ -264,7 +263,6 @@ d3.select('#select-container').property('value', 'all');
     .style("stroke", (d) => getColorElection(d))
 
     .attr("class", (d) => `county-boundary ${d.properties.COUNTY_NAM}`);
-
 
   g.append("g")
     .attr("id", "countiesBG")
@@ -323,7 +321,10 @@ d3.select('#select-container').property('value', 'all');
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("class", (d) => `feature ${d.properties.NAME.toUpperCase().split(" ").join("_")}`)
+    .attr(
+      "class",
+      (d) => `feature ${d.properties.NAME.toUpperCase().split(" ").join("_")}`
+    )
     .on("mousemove", (d) => mouseOverFunc(d))
     .on("mouseout", (d) => mouseOutFunc(d))
     .on("click", clicked);
@@ -335,12 +336,11 @@ d3.select('#select-container').property('value', 'all');
 
     svg.selectAll(".county-boundary").style("opacity", 0.5);
     let selCounty;
-    if(d.properties.NAME === "Roger Mills") {
+    if (d.properties.NAME === "Roger Mills") {
       selCounty = d.properties.NAME.toUpperCase().split(" ").join("_");
-    } 
-    else if(d.properties.NAME === "Le Flore") {
+    } else if (d.properties.NAME === "Le Flore") {
       selCounty = d.properties.NAME.toUpperCase().split(" ").join("");
-    }else {
+    } else {
       selCounty = d.properties.NAME.toUpperCase();
     }
     d3.selectAll(".featurebg").style("display", "none");
@@ -388,8 +388,8 @@ d3.select('#select-container').property('value', 'all');
   }
 
   function changed(d) {
-    var selectedOption = d3.select(this).property("value")
-    if(selectedOption === 'all') reset();
+    var selectedOption = d3.select(this).property("value");
+    if (selectedOption === "all") reset();
     svg.selectAll(".feature").on("click", null);
     d3.selectAll(".place-text").style("display", "none");
     d3.selectAll(".place-point").style("display", "none");
@@ -399,14 +399,14 @@ d3.select('#select-container').property('value', 'all');
 
     zoomMode = true;
     let precinctSel;
-    if(selectedOption === 'Roger Mills') {
-      precinctSel = 'ROGER_MILLS'
-    } else if(selectedOption === 'Le Flore') {
-            precinctSel = 'LEFLORE'
+    if (selectedOption === "Roger Mills") {
+      precinctSel = "ROGER_MILLS";
+    } else if (selectedOption === "Le Flore") {
+      precinctSel = "LEFLORE";
     } else {
       precinctSel = selectedOption.toUpperCase();
     }
-    
+
     d3.selectAll(`#precincts .${precinctSel}`)
       .style("stroke", "#fff")
       .style("stroke-width", 0.15);
@@ -437,13 +437,12 @@ d3.select('#select-container').property('value', 'all');
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-        let selCounty;
-    if(testB.properties.NAME === "Roger Mills") {
+    let selCounty;
+    if (testB.properties.NAME === "Roger Mills") {
       selCounty = testB.properties.NAME.toUpperCase().split(" ").join("_");
-    } 
-    else if(testB.properties.NAME === "Le Flore") {
+    } else if (testB.properties.NAME === "Le Flore") {
       selCounty = testB.properties.NAME.toUpperCase().split(" ").join("");
-    }else {
+    } else {
       selCounty = testB.properties.NAME.toUpperCase();
     }
     g.append("g")
@@ -467,7 +466,7 @@ d3.select('#select-container').property('value', 'all');
   zoomBtn.on("click", reset);
 
   function reset() {
-    d3.select('#select-container').property('value', 'all');
+    d3.select("#select-container").property("value", "all");
 
     d3.selectAll(".county-boundary").style("stroke", (d) =>
       getColorElection(d)
@@ -495,5 +494,5 @@ d3.select('#select-container').property('value', 'all');
 }
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
